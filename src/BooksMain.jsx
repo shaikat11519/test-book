@@ -72,8 +72,11 @@ export default function BooksMain() {
   ]);
 
   const handleSearch = (searchData) => {
+    const keywords = searchData.toLowerCase().split(' ');
     const filtered = books.filter((book) =>
-      book.bookName.toLowerCase().includes(searchData.toLowerCase())
+      keywords.every((keyword) =>
+        book.bookName.toLowerCase().includes(keyword)
+      )
     );
     setBooks([...filtered]);
   };
